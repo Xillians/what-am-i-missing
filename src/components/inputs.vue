@@ -17,7 +17,7 @@ export default {
       updateContent(event) {
           const eventName = `on${this.name}Update`;
           const cardList = new Map();
-          let cardName = "";
+          let cardName;
           let amount;
           const list = event.target.value.split(/\n/);
           
