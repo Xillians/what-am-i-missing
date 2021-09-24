@@ -1,6 +1,6 @@
 <template>
   <div class="topnav">
-    <a class="active" href="#home">Home</a>
+    <a class="active" href="#home">what's my deck missing?</a>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 /* Add a black background color to the top navigation */
 .topnav {
   position: sticky;
-  background-color: #333;
+  background-color: rgb(80, 77, 78);
   overflow: hidden;
 }
 
@@ -32,13 +32,13 @@ export default {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: rgb(231, 231, 231);
   color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #00a86b;
+  background-color: #1079aa;
   color: white;
 }
 </style>

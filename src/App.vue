@@ -1,14 +1,17 @@
 <template>
   <Header></Header>
+  <mainBody></mainBody>
 </template>
 
 <script>
-import Header from './components/header.vue'
+import Header from './components/header.vue';
+import mainBody from './components/mainBody.vue';
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    mainBody
   }
 }
 </script>
