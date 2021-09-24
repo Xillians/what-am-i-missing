@@ -14,10 +14,23 @@ export default {
   props: ["decklist", "collection"],
   methods: {
     compareFiles() {
-      const dummyData = {
-        cards: ["Black lotus", "Dark Magician", "Exodia, the Forbidden One"],
-      };
-      this.$emit("onDataCompared", dummyData);
+      let missingCards = [];
+
+      this.decklist.forEach( (value, key) => {
+        const cardName = key;
+        const requiredQuantity = value.qty;
+        
+        if(this.collection.has(cardName)) {
+          if(this.collection.get(cardName).qty < requiredQuantity)
+            missingCards.push(`${requiredQuantity - this.collection.get(cardName).qty} ${cardName}`);
+        }
+        else {
+          missingCards.push(`${requiredQuantity} ${cardName}`);
+        }
+          
+      });
+
+      this.$emit("onDataCompared", missingCards);
     },
   },
 };
