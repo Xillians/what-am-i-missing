@@ -61,9 +61,10 @@ export default {
 <style scoped>
 .input {
   width: 40%;
+  height: 75px;
   position: relative;
   margin-bottom: 10px;
   margin-top: 5px;
-  margin-right: 5%;
+  resize: none;
 }
 </style>
