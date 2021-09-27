@@ -66,5 +66,16 @@ export default {
   margin-bottom: 10px;
   margin-top: 5px;
   resize: none;
+  animation: 1s fadeIn;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opactiy: 1;
+  }
 }
 </style>
