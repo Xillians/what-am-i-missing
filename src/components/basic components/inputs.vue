@@ -31,7 +31,7 @@ export default {
       formatData(text) {
         let cardAndAmount = this.trimMetaData(text);
         let amount = this.quantifyAmount(cardAndAmount);
-        let cardName = this.removeAmount(cardAndAmount);
+        let cardName = this.removeAmount(cardAndAmount).toLowerCase();
         if(cardName.endsWith(' '))
           cardName = cardName.slice(0, -1);
         return [cardName, amount];
