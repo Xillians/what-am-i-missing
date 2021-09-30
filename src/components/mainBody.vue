@@ -12,6 +12,7 @@
       :decklist="decklist"
       :collection="collection"
     />
+    <scryfall-data/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@
 import inputs from './basic components/inputs.vue';
 import compareData from './compareData.vue';
 import outputData from './output.vue';
+import scryfallData from './scryfallData.vue'
 
 export default {
   name: "mainBody",
@@ -33,6 +35,7 @@ export default {
       inputs,
       compareData,
       outputData,
+      scryfallData
   },
   props: [
   ]
