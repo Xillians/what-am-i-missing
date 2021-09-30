@@ -1,45 +1,86 @@
 <template>
-    <div>
-        <base-button :id="getRarity" :text="`find rarities`" @click="getSpecificCard"/>
-        {{rarity}} <br>
-        <baseImage :source="image"/> <br>
-        {{sets}}
-    </div>    
+  <div>
+    {{ cardData }}
+  </div>
 </template>
 
 <script>
-import {Scryfall} from '../jsController/API/scryfall';
-import baseButton from './basic components/btn.vue';
-import baseImage from './basic components/image.vue';
+import { Scryfall } from "../jsController/API/scryfall";
 
 export default {
-    name: "scryfallData",
-    data() {
-        return {
-            scryfall: new Scryfall(),
-            rarity: "",
-            image: "",
-            sets: [],
-        }
+  name: "scryfallData",
+  props: ["outputText"],
+  data() {
+    return {
+      scryfall: new Scryfall(),
+      rarities: {
+          common: 0,
+          uncommon: 0,
+          rare: 0,
+          mythic: 0
+      },
+      sets: [],
+      cardData: []
+    };
+  },
+  methods: {
+    async getMultipleCards() {
+      let cards = [];
+      let fullIndex = [];
+
+      // Create list of cards with name specified
+      this.outputText.forEach((card) => {
+        const cardName = this.removeAmount(card);
+        cards.push({ name: cardName });
+      });
+
+      //split cardlist into segments of 75 for scryfall API spec
+      while (cards.length > 75) {
+        let tempArray = cards.splice(0, 75);
+        fullIndex.push(tempArray);
+      }
+      fullIndex.push(cards);
+      fullIndex.forEach(async (cardList) => {
+        let response = await this.scryfall.collectMultipleCards(cardList);
+        response.data.data.forEach(async card => {
+            const cardInfo = await this.convertDataToInfo(card);
+            this.cardData.push(cardInfo)
+        });
+      });
     },
-    components: {
-        baseButton,
-        baseImage
+    async convertDataToInfo(jsonData) {
+      const sets = [];
+      const allSetsResponse = await this.scryfall.getAllSets(
+        jsonData.prints_search_uri
+      );
+      allSetsResponse.data.data.forEach((set) => {
+        sets.push({
+          name: set.set_name,
+          code: set.set,
+        });
+      });
+      return {
+        name: jsonData.name,
+        sets,
+        image: jsonData.image_uris.small,
+        rarity: jsonData.rarity,
+        prices: jsonData.prices
+      };
     },
-    methods: {
-        async getSpecificCard() {
-            const card = await this.scryfall.getNamedCard('Gray Merchant of Asphodel');
-            const sets = await this.scryfall.getAllSets(card.data.prints_search_uri);
-            sets.data.data.forEach(set => {
-                this.sets.push(set.set_name);
-            });
-            this.rarity = card.data.rarity;
-            this.image = card.data.image_uris.small
-        }
-    }
-}
+    removeAmount(text) {
+      const split = text.split(" ");
+      split.shift();
+      return split.join(" ");
+    },
+  },
+  watch: {
+      outputText: async function () {
+          await this.getMultipleCards();
+          this.$emit("onCardInfoUpdated", this.cardData)
+      }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
