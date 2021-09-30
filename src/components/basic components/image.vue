@@ -1,5 +1,5 @@
 <template>    
-    <img :src="source"/>
+    <img class="baseImage" :src="source"/>
 </template>
 
 <script>
@@ -11,8 +11,7 @@ export default {
 
 
 <style scoped>
-.input {
-  position: relative;
+.baseImage {
   resize: none;
   animation: .5s fadeIn;
   animation-fill-mode: forwards;
