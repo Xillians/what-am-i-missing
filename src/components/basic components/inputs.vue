@@ -66,7 +66,7 @@ export default {
   margin-bottom: 10px;
   margin-top: 5px;
   resize: none;
-  animation: 1s fadeIn;
+  animation: .5s fadeIn;
   animation-fill-mode: forwards;
 }
 @keyframes fadeIn {

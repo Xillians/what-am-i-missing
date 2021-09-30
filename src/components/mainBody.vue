@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import inputs from './inputs.vue';
+import inputs from './basic components/inputs.vue';
 import compareData from './compareData.vue';
 import outputData from './output.vue';
 
@@ -32,7 +32,7 @@ export default {
   components: {
       inputs,
       compareData,
-      outputData
+      outputData,
   },
   props: [
   ]
