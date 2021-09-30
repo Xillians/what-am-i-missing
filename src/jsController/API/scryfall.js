@@ -12,4 +12,14 @@ export class Scryfall {
         const base = scryfallBase.defaults.baseURL;
         return fullUrl.replace(base, '');
     }
+    collectMultipleCards(cards = []) {
+        const jsonBody = {
+            "identifiers": []
+        }
+        cards.forEach(card => {
+            jsonBody.identifiers.push({ name: card.name})
+        });
+
+        return scryfallBase.post('/cards/collection', jsonBody)
+    }
 }
