@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{ cardData }}
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -13,14 +11,7 @@ export default {
   data() {
     return {
       scryfall: new Scryfall(),
-      rarities: {
-          common: 0,
-          uncommon: 0,
-          rare: 0,
-          mythic: 0
-      },
-      sets: [],
-      cardData: []
+      cardData: [],
     };
   },
   methods: {
@@ -42,9 +33,9 @@ export default {
       fullIndex.push(cards);
       fullIndex.forEach(async (cardList) => {
         let response = await this.scryfall.collectMultipleCards(cardList);
-        response.data.data.forEach(async card => {
-            const cardInfo = await this.convertDataToInfo(card);
-            this.cardData.push(cardInfo)
+        response.data.data.forEach(async (card) => {
+          const cardInfo = await this.convertDataToInfo(card);
+          this.cardData.push(cardInfo);
         });
       });
     },
@@ -64,7 +55,7 @@ export default {
         sets,
         image: jsonData.image_uris.small,
         rarity: jsonData.rarity,
-        prices: jsonData.prices
+        prices: jsonData.prices,
       };
     },
     removeAmount(text) {
@@ -74,11 +65,12 @@ export default {
     },
   },
   watch: {
-      outputText: async function () {
-          await this.getMultipleCards();
-          this.$emit("onCardInfoUpdated", this.cardData)
-      }
-  }
+    outputText: async function () {
+      console.log("woop");
+      await this.getMultipleCards();
+      this.$emit("onCardInfoUpdated", this.cardData);
+    },
+  },
 };
 </script>
 
