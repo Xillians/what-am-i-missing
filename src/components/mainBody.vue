@@ -12,7 +12,7 @@
       :decklist="decklist"
       :collection="collection"
     />
-    <scryfall-data/>
+    <scryfall-data :outputText="outputResult"/>
   </div>
 </template>
 
