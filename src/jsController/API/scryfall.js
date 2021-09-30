@@ -17,9 +17,9 @@ export class Scryfall {
             "identifiers": []
         }
         cards.forEach(card => {
-            jsonBody.identifiers.push({ name: card.name})
+            if(card.name)
+                jsonBody.identifiers.push({ name: card.name})
         });
-
         return scryfallBase.post('/cards/collection', jsonBody)
     }
 }
