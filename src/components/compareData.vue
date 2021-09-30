@@ -1,33 +1,39 @@
 <template>
   <div>
-    <button 
-    id="compareData" 
-    class="mainButton"
-    @click="compareFiles"
-    >give me the list</button>
+    <base-button
+      :id="`compareData`"
+      :text="`give me the list`"
+      @click="compareFiles"
+    />
   </div>
 </template>
 
 <script>
+import baseButton from "./basic components/btn.vue";
 export default {
   name: "compareData",
   props: ["decklist", "collection"],
+  components: {
+    baseButton,
+  },
   methods: {
     compareFiles() {
       let missingCards = [];
 
-      this.decklist.forEach( (value, key) => {
+      this.decklist.forEach((value, key) => {
         const cardName = key;
         const requiredQuantity = value.qty;
-        
-        if(this.collection.has(cardName)) {
-          if(this.collection.get(cardName).qty < requiredQuantity)
-            missingCards.push(`${requiredQuantity - this.collection.get(cardName).qty} ${cardName}`);
-        }
-        else {
+
+        if (this.collection.has(cardName)) {
+          if (this.collection.get(cardName).qty < requiredQuantity)
+            missingCards.push(
+              `${
+                requiredQuantity - this.collection.get(cardName).qty
+              } ${cardName}`
+            );
+        } else {
           missingCards.push(`${requiredQuantity} ${cardName}`);
         }
-          
       });
 
       this.$emit("onDataCompared", missingCards);
@@ -37,10 +43,4 @@ export default {
 </script>
 
 <style scoped>
-.mainButton {
-  width: 105px;
-  height: 30px;
-  background-color: #b9c7ee;
-  border-radius: 50px;
-}
 </style>
