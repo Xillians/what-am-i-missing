@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>{{cardData}}</div>
 </template>
 
 <script>
@@ -67,7 +67,7 @@ export default {
   watch: {
     outputText: async function () {
       console.log("woop");
-      await this.getMultipleCards();
+      // await this.getMultipleCards();
       this.$emit("onCardInfoUpdated", this.cardData);
     },
   },
