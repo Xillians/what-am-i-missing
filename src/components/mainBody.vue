@@ -9,10 +9,9 @@
     />
     <outputData 
       :outputText="outputResult"
-      :decklist="decklist"
-      :collection="collection"
+      :scryfallInfo="scryfallInfo"
     />
-    <scryfall-data :outputText="outputResult"/>
+    <scryfall-data :outputText="outputResult" @onCardInfoUpdated="something"/>
   </div>
 </template>
 
@@ -28,7 +27,8 @@ export default {
     return {
       decklist:"",
       collection:"",
-      outputResult:""
+      outputResult:"",
+      scryfallInfo:[]
     }
   },
   components: {
@@ -36,6 +36,11 @@ export default {
       compareData,
       outputData,
       scryfallData
+  },
+  methods: {
+    something(eventData) {
+      this.scryfallInfo = eventData;
+    }
   },
   props: [
   ]
