@@ -12,7 +12,7 @@ export class Scryfall {
         const base = scryfallBase.defaults.baseURL;
         return fullUrl.replace(base, '');
     }
-    collectMultipleCards(cards = []) {
+    POST_Collection(cards = []) {
         const jsonBody = {
             "identifiers": []
         }
