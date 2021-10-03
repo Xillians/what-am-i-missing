@@ -12,6 +12,7 @@ export default {
 
 <style scoped>
 .baseImage {
+  display: flex;
   resize: none;
   animation: .5s fadeIn;
   animation-fill-mode: forwards;
