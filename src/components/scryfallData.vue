@@ -1,5 +1,5 @@
 <template>
-  <div>{{cardData}}</div>
+  <div></div>
 </template>
 
 <script>
@@ -15,29 +15,15 @@ export default {
     };
   },
   methods: {
-    async getMultipleCards() {
-      let cards = [];
-      let fullIndex = [];
+    async fetchScryfallData() {
+      let cards = this.removeAmountFromList(this.outputText);
+      let formattedList  = [];
 
-      // Create list of cards with name specified
-      this.outputText.forEach((card) => {
-        const cardName = this.removeAmount(card);
-        cards.push({ name: cardName });
-      });
-
-      //split cardlist into segments of 75 for scryfall API spec
       while (cards.length > 75) {
-        let tempArray = cards.splice(0, 75);
-        fullIndex.push(tempArray);
+        let block = cards.splice(0, 75);
+        formattedList = await this.getFullCardListInfo(block, formattedList);
       }
-      fullIndex.push(cards);
-      fullIndex.forEach(async (cardList) => {
-        let response = await this.scryfall.collectMultipleCards(cardList);
-        response.data.data.forEach(async (card) => {
-          const cardInfo = await this.convertDataToInfo(card);
-          this.cardData.push(cardInfo);
-        });
-      });
+      this.cardData = await this.getFullCardListInfo(cards, formattedList);
     },
     async convertDataToInfo(jsonData) {
       const sets = [];
@@ -58,6 +44,24 @@ export default {
         prices: jsonData.prices,
       };
     },
+    async getFullCardListInfo(block, cardList) {
+      let response = await this.scryfall.POST_Collection(block);
+      let blockCardList = response.data.data;
+
+      for (const card of blockCardList) {
+        const cardInfo = await this.convertDataToInfo(card);
+        cardList.push(cardInfo);
+      }
+      return cardList;
+    },
+    removeAmountFromList(cardList = []) {
+      const formattedList = [];
+      cardList.forEach((card) => {
+        const cardName = this.removeAmount(card);
+        formattedList.push({ name: cardName });
+      });
+      return formattedList;
+    },
     removeAmount(text) {
       const split = text.split(" ");
       split.shift();
@@ -66,8 +70,7 @@ export default {
   },
   watch: {
     outputText: async function () {
-      console.log("woop");
-      await this.getMultipleCards();
+      await this.fetchScryfallData();
       this.$emit("onCardInfoUpdated", this.cardData);
     },
   },
