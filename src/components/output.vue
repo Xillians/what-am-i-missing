@@ -7,6 +7,7 @@
       readonly
     />
     <base-button id="`copy`" text="clipboard" @click="copyToClipboard"/>
+    {{scryfallInfo}}
   </div>
 </template>
 
@@ -15,7 +16,7 @@ import baseButton from "./basic components/btn.vue";
 
 export default {
   name: "outputData",
-  props: ["decklist", "collection", "outputText"],
+  props: ["outputText", "scryfallInfo"],
   components: { baseButton },
   watch: {
     outputText: function () {
