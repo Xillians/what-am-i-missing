@@ -1,12 +1,10 @@
 <template>
-  <div>
     <textarea 
         class="input" 
         :placeholder="name"
         v-bind:id="name"
         @input=updateContent
     />
-  </div>
 </template>
 
 <script>
@@ -60,11 +58,13 @@ export default {
 
 <style scoped>
 .input {
+  min-width: 250px;
   width: 40%;
   height: 75px;
   position: relative;
   margin-bottom: 10px;
   margin-top: 5px;
+  margin-left: 15px;
   resize: none;
   animation: .5s fadeIn;
   animation-fill-mode: forwards;
