@@ -30,8 +30,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  width: auto;
   margin-top: 5px;
-  margin-bottom: 5px;
+  gap: 10px;
 }
 </style>
