@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flexbox">
     <base-button
       :id="`compareData`"
       :text="`give me the list`"
