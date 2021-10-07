@@ -6,7 +6,7 @@
       :value="formattedText"
       readonly
     /><br>
-    <base-button id="`copy`" text="clipboard" @click="copyToClipboard" />
+    <base-button id="`copy`" text="clipboard" @click="copyToClipboard" /><br>
     <div id="textInfo" class="flexbox">
       <div id="rarities" class="textBlock">
         rarities: <br>
@@ -21,7 +21,7 @@
         €{{ prices.eur }}
       </div>
     </div>
-    <div class="imageBox">
+    <div class="flexbox">
       <div v-for="object in scryfallInfo" v-bind:key="object.image">
         <baseImage :source="object.image" />
       </div>
@@ -123,13 +123,6 @@ export default {
 </script>
 
 <style scoped>
-.imageBox {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  width: auto;
-}
 .output {
   position: relative;
   height: 40%;
@@ -137,6 +130,7 @@ export default {
   display: inline;
 }
 .textArea {
+  min-width: 250px;
   width: 40%;
   height: 120px;
   position: relative;
@@ -150,14 +144,5 @@ export default {
   width: auto;
   height: auto;
   margin-left: 10px;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    visibility: visible;
-    opactiy: 1;
-  }
 }
 </style>
