@@ -5,7 +5,7 @@
       class="textArea"
       :value="formattedText"
       readonly
-    /><br />
+    />
     <base-button id="`copy`" text="clipboard" @click="copyToClipboard" />
     <div id="textInfo" class="flexbox">
       <div id="rarities" class="textBlock">
@@ -134,6 +134,7 @@ export default {
   position: relative;
   height: 40%;
   margin-top: 20px;
+  display: inline;
 }
 .textArea {
   width: 40%;
