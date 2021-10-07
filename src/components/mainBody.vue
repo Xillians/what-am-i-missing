@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="inputs" class="flexbos">
+    <div id="inputs" class="flexbox">
       <inputs :name="`decklist`" @ondecklistUpdate="decklist = $event" />
       <inputs :name="`collection`" @oncollectionUpdate="collection = $event" />
     </div>
@@ -8,7 +8,7 @@
       :decklist="decklist"
       :collection="collection"
       @onDataCompared="outputResult = $event"
-    />
+    /><br>
     <outputData :outputText="outputResult" :scryfallInfo="scryfallInfo" />
     <scryfall-data :outputText="outputResult" @onCardInfoUpdated="something" />
   </div>
