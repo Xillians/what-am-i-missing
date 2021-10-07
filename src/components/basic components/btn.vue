@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button v-bind:id="id" class="btn">
-      {{ text }}
-    </button>
-  </div>
+  <button v-bind:id="id" class="btn">
+    {{ text }}
+  </button>
 </template>
 
 <script>
@@ -22,6 +20,7 @@ export default {
   border-radius: 50px;
   animation: 0.5s fadeIn;
   animation-fill-mode: forwards;
+  margin-left: 10px;
 }
 @keyframes fadeIn {
   0% {
