@@ -64,7 +64,6 @@ export default {
   position: relative;
   margin-bottom: 10px;
   margin-top: 5px;
-  margin-left: 15px;
   resize: none;
   animation: .5s fadeIn;
   animation-fill-mode: forwards;
