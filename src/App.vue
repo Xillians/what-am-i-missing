@@ -4,16 +4,16 @@
 </template>
 
 <script>
-import Header from './components/header.vue';
-import mainBody from './components/mainBody.vue';
+import Header from "./components/header.vue";
+import mainBody from "./components/mainBody.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
-    mainBody
-  }
-}
+    mainBody,
+  },
+};
 </script>
 
 <style>
@@ -24,5 +24,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0%;
+}
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 </style>
