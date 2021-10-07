@@ -5,7 +5,7 @@
       class="textArea"
       :value="formattedText"
       readonly
-    />
+    /><br>
     <base-button id="`copy`" text="clipboard" @click="copyToClipboard" />
     <div id="textInfo" class="flexbox">
       <div id="rarities" class="textBlock">
