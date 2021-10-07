@@ -1,15 +1,25 @@
 <template>
   <div class="output" v-if="showOutput">
-    <textarea id="output" class="textArea" :value="formattedText" readonly />
+    <textarea
+      id="output"
+      class="textArea"
+      :value="formattedText"
+      readonly
+    /><br />
     <base-button id="`copy`" text="clipboard" @click="copyToClipboard" />
-    <div id="rarities">
-      commons: {{ rarities.common }} <br />
-      uncommons: {{ rarities.uncommon }} <br />
-      rares: {{ rarities.rare }} <br />
-      mythic rares: {{ rarities.mythic }} <br />
-      Estimated price: <br>
-      ${{prices.usd}} <br>
-      €{{prices.eur}}
+    <div id="textInfo" class="flexbox">
+      <div id="rarities" class="textBlock">
+        rarities: <br>
+        commons: {{ rarities.common }} <br />
+        uncommons: {{ rarities.uncommon }} <br />
+        rares: {{ rarities.rare }} <br />
+        mythic rares: {{ rarities.mythic }} <br />
+      </div>
+      <div id="prices" class="textBlock">
+        Estimated price: <br><br>
+        ${{ prices.usd }} <br />
+        €{{ prices.eur }}
+      </div>
     </div>
     <div class="imageBox">
       <div v-for="object in scryfallInfo" v-bind:key="object.image">
@@ -39,15 +49,24 @@ export default {
         this.rarities[card.rarity] += card.qty;
         let prices = this.prices;
         prices.usd = this.updatePrice(prices.usd, card.prices.usd);
-        prices.usd_foil = this.updatePrice(prices.usd_foil, card.prices.usd_foil);
-        prices.usd_etched = this.updatePrice(prices.usd_etched, card.prices.usd_etched);
+        prices.usd_foil = this.updatePrice(
+          prices.usd_foil,
+          card.prices.usd_foil
+        );
+        prices.usd_etched = this.updatePrice(
+          prices.usd_etched,
+          card.prices.usd_etched
+        );
         prices.eur = this.updatePrice(prices.eur, card.prices.eur);
-        prices.eur_foil = this.updatePrice(prices.eur_foil, card.prices.eur_foil);
+        prices.eur_foil = this.updatePrice(
+          prices.eur_foil,
+          card.prices.eur_foil
+        );
         prices.tix = this.updatePrice(prices.tix, card.prices.tix);
         const formattedTextInfo = `${card.qty} ${card.name} [${card.sets[0].name}]`;
         outputWithSets.push(formattedTextInfo);
       });
-      this.formattedText = outputWithSets.join('\n');
+      this.formattedText = outputWithSets.join("\n");
     },
   },
   data() {
@@ -66,8 +85,8 @@ export default {
         usd_etched: 0,
         eur: 0,
         eur_foil: 0,
-        tix: 0
-      }
+        tix: 0,
+      },
     };
   },
   methods: {
@@ -81,7 +100,7 @@ export default {
       alert("copied to clipboard!");
     },
     updatePrice(originalValue, newValue) {
-      if(newValue != null) {
+      if (newValue != null) {
         const number = Number(newValue);
         originalValue += number;
       }
@@ -98,7 +117,7 @@ export default {
       this.prices.eur = 0;
       this.prices.eur_foi = 0;
       this.prices.usd = 0;
-    }
+    },
   },
 };
 </script>
@@ -125,6 +144,11 @@ export default {
   resize: none;
   animation: 0.5s fadeIn;
   animation-fill-mode: forwards;
+}
+.textBlock {
+  width: auto;
+  height: auto;
+  margin-left: 10px;
 }
 @keyframes fadeIn {
   0% {
