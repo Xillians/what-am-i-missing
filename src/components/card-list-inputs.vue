@@ -22,6 +22,7 @@ import { CardInputType } from '../models/card-input';
   },
   methods: {
     analyze() {
+      this.missing_cards = new Map<string, number>();
       const decklist = this.split_cards(this.decklist);
       const collection = this.split_cards(this.collection);
 
