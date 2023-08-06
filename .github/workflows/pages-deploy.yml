@@ -1,0 +1,27 @@
+name: Deploy to github pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 🛎️
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies ✅
+        run: npm install
+      - name: Build 🔨
+        run: npm run build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          BUILD_SCRIPT: npm run build
+        env:
+          publicPath: /what-am-i-missing/
