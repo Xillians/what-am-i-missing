@@ -1,13 +1,16 @@
 <template>
   <Header title="Magic Deck Gap Analyzer" />
+  <card-list-inputs />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import CardListInputs from "./components/card-list-inputs.vue";
 import Header from "./components/header.vue";
 
 @Options({
   components: {
+    CardListInputs,
     Header,
   },
 })
