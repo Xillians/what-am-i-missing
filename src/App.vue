@@ -1,17 +1,25 @@
 <template>
   <Header title="Magic Deck Gap Analyzer" />
-  <card-list-inputs />
+  <card-list-inputs @missing_cards="missing_cards = $event"/>
+  <list-output :missing_cards="missing_cards" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import CardListInputs from "./components/card-list-inputs.vue";
 import Header from "./components/header.vue";
+import listOutput from "./components/list-output.vue";
 
 @Options({
   components: {
     CardListInputs,
     Header,
+    listOutput,
+  },
+  data() {
+    return {
+      missing_cards: new Map<string, number>(),
+    };
   },
 })
 export default class App extends Vue {}
