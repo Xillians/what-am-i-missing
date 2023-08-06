@@ -39,11 +39,12 @@ export default class Header extends Vue {}
   text-align: left;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 img {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0.5rem;
 }
 </style>
