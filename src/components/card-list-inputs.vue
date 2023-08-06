@@ -13,6 +13,7 @@ import { CardInputType } from '../models/card-input';
 
 @Options({
   name: "CardListInputs",
+  emits: ["missing_cards"],
   data() {
     return {
       decklist: "",
@@ -29,7 +30,7 @@ import { CardInputType } from '../models/card-input';
       decklist.forEach((quantity: number, name: string) => {
         this.set_missing_cards(name, quantity, collection);
       });
-      console.log(this.missing_cards);
+      this.$emit("missing_cards", this.missing_cards);
     },
     split_cards(cardlist: string) {
       const cards = cardlist.split("\n");
