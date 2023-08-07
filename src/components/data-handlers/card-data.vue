@@ -47,6 +47,7 @@ import { Scryfall } from "@/utils/scryfall";
   watch: {
     async visible(val: boolean) {
       if (val) {
+        this.reprints = [];
         const response_data = await this.api.get_reprints(
           this.card.prints_search_uri
         );
