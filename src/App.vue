@@ -1,7 +1,7 @@
 <template>
   <Header title="Magic Deck Gap Analyzer" />
   <card-list-inputs @missing_cards="missing_cards = $event"/>
-  <list-output :missing_cards="missing_cards" />
+  <list-output v-if="missing_cards.size > 0" :missing_cards="missing_cards" />
 </template>
 
 <script lang="ts">
