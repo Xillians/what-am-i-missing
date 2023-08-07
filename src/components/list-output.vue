@@ -1,6 +1,7 @@
 <template >
     <div class="container">
     <textarea disabled v-model="decklist" placeholder="output"></textarea>
+    <button @click="copy_to_clipboard">Copy to clipboard</button>
     </div>
 </template>
 
@@ -22,6 +23,17 @@ import { Options, Vue } from "vue-class-component";
                 output += `${quantity} ${name}\n`;
             });
             return output;
+        },
+        copy_to_clipboard() {
+            const cards = this.decklist;
+            navigator.clipboard.writeText(cards).then(
+                () => {
+                    console.log("copied to clipboard");
+                },
+                (err) => {
+                    console.error("could not copy to clipboard", err);
+                }
+            );
         },
     },
     watch: {
@@ -54,5 +66,16 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
   resize: none;
+}
+button {
+    width: 50%;
+    min-height: 2rem;
+    height: auto;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
 }
 </style>
