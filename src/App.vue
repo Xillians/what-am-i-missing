@@ -10,7 +10,7 @@ import { Options, Vue } from "vue-class-component";
 import CardListInputs from "./components/card-list-inputs.vue";
 import Header from "./components/header.vue";
 import listOutput from "./components/list-output.vue";
-import ScryfallData from "./components/cards/scryfall-data.vue";
+import ScryfallData from "./components/data-handlers/scryfall-data.vue";
 
 @Options({
   components: {
