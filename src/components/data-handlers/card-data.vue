@@ -47,6 +47,8 @@ import { Scryfall } from "@/utils/scryfall";
   watch: {
     async visible(val: boolean) {
       if (val) {
+        // TODO: this is a hacky way to get the reprints, but it works for now
+        // TODO: store data in localstorage to prevent repeated api calls
         this.reprints = [];
         const response_data = await this.api.get_reprints(
           this.card.prints_search_uri
