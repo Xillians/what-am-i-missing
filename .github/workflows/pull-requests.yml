@@ -1,0 +1,19 @@
+name: Deploy to github pages
+on:
+  pull_request:
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 🛎️
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install dependencies ✅
+        run: npm install
+      - name: Build 🔨
+        run: npm run build
+      - name: Test 🔨
+        run: npm run test
