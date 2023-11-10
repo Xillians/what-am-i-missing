@@ -3,7 +3,7 @@
 import React from "react";
 import { metadata } from "./layout";
 
-export default function RootPage({ children }: { children: React.ReactNode }) {
+function Page({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -14,3 +14,5 @@ export default function RootPage({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+export default Page;
