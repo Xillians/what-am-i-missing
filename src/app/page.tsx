@@ -1,17 +1,10 @@
-// create root page
-
 import React from "react";
-import { metadata } from "./layout";
 
-function Page({ children }: { children: React.ReactNode }) {
+function Page() {
   return (
-    <html lang="en">
-      <head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-      </head>
-      <body>{children}</body>
-    </html>
+    <div>
+      <h1>Page</h1>
+    </div>
   );
 }
 
