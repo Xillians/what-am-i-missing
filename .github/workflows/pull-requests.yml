@@ -1,9 +1,9 @@
-name: Deploy to github pages
+name: build app and run tests
 on:
   pull_request:
     
 jobs:
-  deploy:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,5 +15,5 @@ jobs:
         run: npm install
       - name: Build 🔨
         run: npm run build
-      - name: Test 🔨
+      - name: Test 🧪
         run: npm run test
