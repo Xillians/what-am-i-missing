@@ -1,4 +1,5 @@
-import Header from "./_components/header"
+import React from "react"
+import Header from "./_components/header/header"
 import { Providers } from "./providers"
 
 export const metadata = {
