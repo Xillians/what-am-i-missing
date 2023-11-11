@@ -11,11 +11,6 @@ export function makeLogger(): pino.Logger {
   return pino(
     {
       level: logLevel,
-      prettyPrint: {
-        colorize: true,
-        translateTime: 'yyyy-mm-dd HH:MM:ss',
-        ignore: 'pid,hostname',
-      },
     },
   );
 }
