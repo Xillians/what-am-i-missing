@@ -1,8 +1,9 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-    output: {
-      publicPath: '/_next/',
-    }
-  }
-   
-  module.exports = nextConfig
+  target: 'experimental-serverless-trace',
+  output: 'export',
+};
+
+module.exports = nextConfig;
