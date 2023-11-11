@@ -1,5 +1,6 @@
 import { CardData } from "@/models/card-data";
 import { CardInputType } from "@/models/card-input";
+import { CardReprintResponse } from "@/models/card-reprints";
 import { scryfallBulkResponse } from "@/models/scryfall-bulk-response";
 import { makeLogger } from "@/utils/logger";
 import fetch from 'node-fetch';
@@ -114,6 +115,7 @@ export class ScryfallAPI {
    */
   public async getReprints(print_search_uri: string): Promise<Array<CardData>> {
     const response = await fetch(print_search_uri);
-    return await response.json();
+    const responseBody: CardReprintResponse = await response.json();
+    return responseBody.data;
   }
 }
