@@ -1,5 +1,6 @@
 import { CardData } from "@/models/card-data";
 import { CardInputType } from "@/models/card-input";
+import { scryfallBulkResponse } from "@/models/scryfall-bulk-response";
 import { makeLogger } from "@/utils/logger";
 import fetch from 'node-fetch';
 
@@ -58,8 +59,6 @@ export class ScryfallAPI {
         return { name: card_name };
       }),
     });
-    ScryfallAPI.logger.info(`Fetching ${card_names.length} cards from Scryfall`);
-     ScryfallAPI.logger.info(requestBody);
      const headers = {
       'Content-Type': 'application/json',
     };
@@ -68,31 +67,43 @@ export class ScryfallAPI {
       body: requestBody,
       headers,
     });
-    return await response.json();
+    const responseBody: scryfallBulkResponse = await response.json();
+
+    return responseBody.data;
   }
 
-  public async fetchBulkData(cardList: CardInputType[], ): Promise<CardData[]> {
-    ScryfallAPI.logger.info(`Fetching ${cardList.length} cards from Scryfall`);
+  public async fetchBulkData(cardList: CardInputType[]): Promise<CardData[]> {
+    if (cardList.length === 0) {
+      return [];
+    }
     const completeList: CardData[] = [];
-    if (cardList.length > 75) {
-        // we need to split the list into chunks of 75
-        const chunkSize = 75;
-        const chunkedArray = [];
-        for (let i = 0; i < cardList.length; i += chunkSize) {
-          chunkedArray.push(cardList.slice(i, i + chunkSize));
-        }
-        chunkedArray.forEach( async (chunk: CardInputType[]) => {
-            const input: string[] = [];
-            chunk.forEach((card: CardInputType) => {
-                input.push(card.name);
-            });
-            console.log(input);
+  
+    const chunkSize = 75;
+  
+    // Function to handle fetching cards for a chunk
+    const fetchChunk = async (chunk: CardInputType[]) => {
+        const input: string[] = chunk.map((card) => card.name);
+        try {
             const cardList: CardData[] = await this.getcardBulk(input);
             completeList.push(...cardList);
-        });
+        } catch (error) {
+            ScryfallAPI.logger.error(`Error fetching cards from scryfall: ${error}`);
+        }
+    };
+  
+    if (cardList.length > chunkSize) {
+        // Split the list into chunks
+        for (let i = 0; i < cardList.length; i += chunkSize) {
+            const chunk = cardList.slice(i, i + chunkSize);
+            await fetchChunk(chunk);
+        }
+    } else {
+        // No need to split, fetch the entire list
+        await fetchChunk(cardList);
     }
+  
     return completeList;
-  }
+}
 
   /**
    *
