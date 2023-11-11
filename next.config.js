@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  
-    /* config options here */
+    output: {
+      publicPath: '/_next/',
+    }
   }
    
   module.exports = nextConfig
