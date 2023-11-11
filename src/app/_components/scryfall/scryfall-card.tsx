@@ -20,7 +20,7 @@ export const ScryfallCard = ({ cards }: Props) => {
       margin={"0 0 0 10px"}
       onClick={onOpen}
     >
-      <CardDetails card={cards} isOpen={isOpen} onClose={onClose} />
+      <CardDetails card={cards} />
       <p>{cards.name}</p>
       <Image
         src={cards.image_uris.small} 
