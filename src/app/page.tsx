@@ -18,9 +18,7 @@ function Page() {
         cards.size > 0 &&
         <Output cards={cards} />
       }
-      <Suspense fallback={<div>Loading...</div>}>
         <ScryfallOutput cards={cards} />
-      </Suspense>
     </Flex>
   );
 }
