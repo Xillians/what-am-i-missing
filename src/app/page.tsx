@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import CardInputs from "./_components/input-boxes/card-inputs";
 import { Flex } from "@chakra-ui/react";
 import Output from "./_components/output-data/output";
@@ -18,7 +18,9 @@ function Page() {
         cards.size > 0 &&
         <Output cards={cards} />
       }
-        < ScryfallOutput cards={cards} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ScryfallOutput cards={cards} />
+      </Suspense>
     </Flex>
   );
 }
