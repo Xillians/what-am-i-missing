@@ -18,6 +18,7 @@ export interface CardData {
     cmc: number,
     type_line: string,
     oracle_text: string,
+    flavor_text: string,
     colors: Array<`W` | `U` | `B` | `R` | `G`>,
     color_identity: Array<`W` | `U` | `B` | `R` | `G`>,
     keywords: Array<string>,

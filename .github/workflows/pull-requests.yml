@@ -1,0 +1,19 @@
+name: build app and run tests
+on:
+  pull_request:
+    
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 🛎️
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install dependencies ✅
+        run: npm install
+      - name: Build 🔨
+        run: npm run build
+      - name: Test 🧪
+        run: npm run test --if-present
