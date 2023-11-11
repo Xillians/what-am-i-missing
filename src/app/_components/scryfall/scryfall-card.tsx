@@ -1,4 +1,5 @@
 import { CardData } from "@/models/card-data";
+import { Flex, Image } from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -7,9 +8,23 @@ interface Props {
 
 export const ScryfallCard = ({ cards }: Props) => {
   return (
-    <div key={cards.id}>
-      <img src={cards.image_uris.small} alt={cards.name} />
+    <Flex 
+      key={cards.id}
+      id={cards.id}
+      flexDir={"column"}
+      alignItems={"left"}
+      margin={"0 0 0 10px"}
+    >
       <p>{cards.name}</p>
-    </div>
+      <Image
+        src={cards.image_uris.small} 
+        alt={cards.name} 
+        width="200"
+        height="280"
+        margin={"0 auto"}
+        border={"1px solid #ccc"}
+        borderRadius={"5px"}
+        />
+    </Flex>
   );
 };
