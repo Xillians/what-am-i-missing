@@ -1,9 +1,10 @@
+// "use server";
 import { CardData } from "@/models/card-data";
 import { CardInputType } from "@/models/card-input";
 import { CardReprintResponse } from "@/models/card-reprints";
 import { scryfallBulkResponse } from "@/models/scryfall-bulk-response";
 import { logger } from "@/utils/logger";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 /**
  * This is the scryfall API.
@@ -59,8 +60,8 @@ export class ScryfallAPI {
         return { name: card_name };
       }),
     });
-     const headers = {
-      'Content-Type': 'application/json',
+    const headers = {
+      "Content-Type": "application/json",
     };
     const response = await fetch(`${ScryfallAPI.base_url}/cards/collection`, {
       method: "POST",
@@ -77,33 +78,33 @@ export class ScryfallAPI {
       return [];
     }
     const completeList: CardData[] = [];
-  
+
     const chunkSize = 75;
-  
+
     // Function to handle fetching cards for a chunk
     const fetchChunk = async (chunk: CardInputType[]) => {
-        const input: string[] = chunk.map((card) => card.name);
-        try {
-            const cardList: CardData[] = await this.getcardBulk(input);
-            completeList.push(...cardList);
-        } catch (error) {
-            logger.error(`Error fetching cards from scryfall: ${error}`);
-        }
+      const input: string[] = chunk.map((card) => card.name);
+      try {
+        const cardList: CardData[] = await this.getcardBulk(input);
+        completeList.push(...cardList);
+      } catch (error) {
+        logger.error(`Error fetching cards from scryfall: ${error}`);
+      }
     };
-  
+
     if (cardList.length > chunkSize) {
-        // Split the list into chunks
-        for (let i = 0; i < cardList.length; i += chunkSize) {
-            const chunk = cardList.slice(i, i + chunkSize);
-            await fetchChunk(chunk);
-        }
+      // Split the list into chunks
+      for (let i = 0; i < cardList.length; i += chunkSize) {
+        const chunk = cardList.slice(i, i + chunkSize);
+        await fetchChunk(chunk);
+      }
     } else {
-        // No need to split, fetch the entire list
-        await fetchChunk(cardList);
+      // No need to split, fetch the entire list
+      await fetchChunk(cardList);
     }
-  
+
     return completeList;
-}
+  }
 
   /**
    *
