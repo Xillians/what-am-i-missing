@@ -4,6 +4,12 @@
 const nextConfig = {
   // other configurations...
 
+  experimental: {
+    serverActions: true,
+    logging: {
+      level: 'verbose',
+    },
+  },
   // Enable modern mode for smaller, faster, and more efficient production builds
   modern: true,
   
