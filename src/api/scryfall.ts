@@ -1,4 +1,3 @@
-// "use server";
 import { CardData } from "@/models/card-data";
 import { CardInputType } from "@/models/card-input";
 import { CardReprintResponse } from "@/models/card-reprints";
@@ -28,6 +27,7 @@ export class ScryfallAPI {
    * @returns CardData object containing the card data
    */
   public async getCard(card_name: string): Promise<CardData> {
+    "use server";
     const response = await fetch(
       `${ScryfallAPI.base_url}/cards/named?exact=${card_name}`
     );
@@ -42,6 +42,7 @@ export class ScryfallAPI {
    * @returns string containing the image uri
    */
   public async getCardImageUri(card_name: string): Promise<string> {
+    "use server";
     const card = await this.getCard(card_name);
     return card.image_uris.normal;
   }
@@ -55,6 +56,7 @@ export class ScryfallAPI {
    * @returns Array of CardData objects containing the card data
    */
   private async getcardBulk(card_names: string[]): Promise<Array<CardData>> {
+    "use server";
     const requestBody = JSON.stringify({
       identifiers: card_names.map((card_name) => {
         return { name: card_name };
@@ -74,6 +76,7 @@ export class ScryfallAPI {
   }
 
   public async fetchBulkData(cardList: CardInputType[]): Promise<CardData[]> {
+    // "use server";
     if (cardList.length === 0) {
       return [];
     }
@@ -102,7 +105,7 @@ export class ScryfallAPI {
       // No need to split, fetch the entire list
       await fetchChunk(cardList);
     }
-
+    logger.info(`Fetched ${completeList.length} cards from scryfall`);
     return completeList;
   }
 
@@ -114,6 +117,7 @@ export class ScryfallAPI {
    * @returns Array of CardData objects containing the card data
    */
   public async getReprints(print_search_uri: string): Promise<Array<CardData>> {
+    "use server";
     const response = await fetch(print_search_uri);
     const responseBody: CardReprintResponse = await response.json();
     return responseBody.data;
