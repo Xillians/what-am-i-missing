@@ -2,7 +2,7 @@ import { CardData } from "@/models/card-data";
 import { CardInputType } from "@/models/card-input";
 import { CardReprintResponse } from "@/models/card-reprints";
 import { scryfallBulkResponse } from "@/models/scryfall-bulk-response";
-import { makeLogger } from "@/utils/logger";
+import { logger } from "@/utils/logger";
 import fetch from 'node-fetch';
 
 /**
@@ -18,7 +18,6 @@ import fetch from 'node-fetch';
  */
 export class ScryfallAPI {
   private static base_url = "https://api.scryfall.com";
-  private static logger = makeLogger();
 
   /**
    *
@@ -88,7 +87,7 @@ export class ScryfallAPI {
             const cardList: CardData[] = await this.getcardBulk(input);
             completeList.push(...cardList);
         } catch (error) {
-            ScryfallAPI.logger.error(`Error fetching cards from scryfall: ${error}`);
+            logger.error(`Error fetching cards from scryfall: ${error}`);
         }
     };
   

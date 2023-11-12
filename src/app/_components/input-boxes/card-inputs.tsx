@@ -4,7 +4,6 @@ import InputBox from "./input-box";
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import { CardInput } from "@/utils/card-input-formatting";
 import { CardInputType } from "@/models/card-input";
-import { makeLogger } from "@/utils/logger";
 
 /**
  *

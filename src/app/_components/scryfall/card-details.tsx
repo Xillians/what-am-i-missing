@@ -1,6 +1,5 @@
 import { ScryfallAPI } from "@/api/scryfall";
 import { CardData } from "@/models/card-data";
-import { makeLogger } from "@/utils/logger";
 import {
   Box,
   Button,
@@ -11,7 +10,6 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -25,7 +23,6 @@ interface Props {
 export const CardDetails = ({ card }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [cardDetails, setCardDetails] = React.useState<CardData[]>([]);
-  const logger = makeLogger();
 
   useEffect(() => {
     const api: ScryfallAPI = new ScryfallAPI();
@@ -34,7 +31,6 @@ export const CardDetails = ({ card }: Props) => {
       api.getReprints(card.prints_search_uri).then((data) => {
         setCardDetails([...data]);
       });
-      logger.info("card details: ", cardDetails)
     }
   }, [isOpen, card.id]);
 
