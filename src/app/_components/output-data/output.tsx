@@ -19,33 +19,45 @@ function Output({ cards }: OutputProps) {
     >
       <OutputBox cards={cards} />
       <Flex>
-      <Button
-        colorScheme="blue"
-        size="lg"
-        style={{
-          margin: "1rem",
-          padding: "1rem",
-          borderRadius: "0.5rem",
-          border: "1px solid #ccc",
-          resize: "none",
-          backgroundColor: "#b3d4fc",
-          color: "#ffff",
-        }}
-      >
-        Copy to clipboard
-      </Button>
-      <Button
-        colorScheme="blue"
-        size="lg"
-        style={{
-          margin: "1rem",
-          padding: "1rem",
-          borderRadius: "0.5rem",
-          border: "1px solid #ccc",
-          resize: "none",
-          backgroundColor: "#b3d4fc",
-          color: "#ffff",
-        }}
+        <Button
+          colorScheme="blue"
+          size="lg"
+          style={{
+            margin: "1rem",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            border: "1px solid #ccc",
+            resize: "none",
+            backgroundColor: "#b3d4fc",
+            color: "#ffff",
+          }}
+          onClick={() => {
+            navigator.clipboard.writeText(
+              Array.from(cards)
+                .map((card) => `${card[1]} ${card[0]}`)
+                .join("\n")
+            );
+          }}
+        >
+          Copy to clipboard
+        </Button>
+        <Button
+          colorScheme="blue"
+          size="lg"
+          style={{
+            margin: "1rem",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            border: "1px solid #ccc",
+            resize: "none",
+            backgroundColor: "#b3d4fc",
+            color: "#ffff",
+          }}
+          onClick={() => {
+            navigator.clipboard.writeText(
+              JSON.stringify(Object.fromEntries(cards), null, 2)
+            );
+          }}
         >
           copy JSON
         </Button>
