@@ -4,6 +4,7 @@ import InputBox from "./input-box";
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import { CardInput } from "@/utils/card-input-formatting";
 import { CardInputType } from "@/models/card-input";
+import { makeLogger } from "@/utils/logger";
 
 /**
  *
@@ -17,10 +18,10 @@ function CardInputs(props: any) {
   let [collection, setCollection] = React.useState("");
 
   function onDecklistChange(event: any) {
-    setDecklist(event.target.value);
+    setDecklist(event.target.value.toString().toLowerCase());
   }
   function onCollectionChange(event: any) {
-    setCollection(event.target.value);
+    setCollection(event.target.value.toString().toLowerCase());
   }
   /**
    *
@@ -38,7 +39,6 @@ function CardInputs(props: any) {
     const missing_cards = new Map<string, number>();
     const deckList = split_cards(decklist);
     const collectionList = split_cards(collection);
-
     deckList.forEach((quantity: number, name: string) => {
       if (collectionList.has(name)) {
         const collection_quantity = collectionList.get(name);

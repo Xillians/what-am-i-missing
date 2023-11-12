@@ -14,7 +14,7 @@ export default function InputBox(props: any) {
         size="lg"
         resize="none"
         onChange={props.onChange}
-        value={props.value}
+        value={props.value?.toString().toLowerCase()}
         />
     );
 }
