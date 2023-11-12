@@ -5,7 +5,6 @@ const nextConfig = {
   // other configurations...
 
   experimental: {
-    serverActions: true,
     logging: {
       level: 'verbose',
     },
