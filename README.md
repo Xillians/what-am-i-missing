@@ -9,6 +9,8 @@ With magic the gathering arena, you can easily see a list
 that marks all the cards you're missing with red text. However,
 when you have a physical list, a tool like this might be handy as well!
 
+This app uses [next.js](https://nextjs.org/) with [chakra](https://chakra-ui.com/) 
+
 ## Local development
 
 In order to run the application, you need to do the following:
