@@ -2,7 +2,6 @@ import { ScryfallAPI } from "@/api/scryfall";
 import { CardData } from "@/models/card-data";
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Modal,
@@ -10,7 +9,6 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 
@@ -44,7 +42,7 @@ export const CardDetails = ({ card, isOpen, onClose }: Props) => {
           }}
         />
         <ModalContent overflow={"scroll"}>
-          <ModalCloseButton alignSelf={"flex-end"} margin={"2rem"} />
+          <ModalCloseButton alignSelf={"flex-end"} padding={"2rem"} />
           <ModalBody>
             <Flex
               flexDir={{ base: "column", md: "row" }}
@@ -55,13 +53,13 @@ export const CardDetails = ({ card, isOpen, onClose }: Props) => {
             >
                 <img src={card.image_uris.normal} alt={card.name} />
               <Box
-                bg={"rgba(150, 150, 150, 0.5)"}
+                bg={"white"}
                 margin={"2rem"}
                 padding={"2rem"}
                 borderRadius={"1rem"}
-                maxH={"50vh"}
+                maxH={"60vh"}
                 overflow={"auto"}
-                maxW={"35vw"}
+                maxW={"50em"}
               >
                 <Flex
                   flexDir={"column"}
@@ -69,15 +67,15 @@ export const CardDetails = ({ card, isOpen, onClose }: Props) => {
                   alignItems={"center"}
                   textAlign={"left"}
                 >
-                  <Heading as={"h3"} fontSize={"2rem"} margin={"2rem"}>
+                  <Heading as={"h2"} fontWeight={"bold"} fontSize={"2em"} margin={"2rem"}>
                     {card.name}
                   </Heading>
                   <Flex flexDir={"column"}>
                     <p>{card.oracle_text}</p>
                     <p>{card.flavor_text}</p>
                     {cardDetails.length > 0 && (
-                      <div>
-                        <p>Reprints:</p>
+                      <div><br/>
+                        <b>Reprints:</b>
                         {cardDetails.map((card) => (
                           <p>{card.set_name}</p>
                         ))}
