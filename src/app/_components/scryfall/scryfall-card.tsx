@@ -23,7 +23,7 @@ export const ScryfallCard = ({ cards }: Props) => {
         onClick={onOpen}
       >
         <Image
-          src={cards.image_uris.small} 
+          src={cards.image_uris.large} 
           alt={cards.name} 
           width="200"
           height="280"

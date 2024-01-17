@@ -44,7 +44,7 @@ export class ScryfallAPI {
   public async getCardImageUri(card_name: string): Promise<string> {
     "use server";
     const card = await this.getCard(card_name);
-    return card.image_uris.normal;
+    return card.image_uris.large;
   }
 
   /**
@@ -105,7 +105,6 @@ export class ScryfallAPI {
       // No need to split, fetch the entire list
       await fetchChunk(cardList);
     }
-    logger.info(`Fetched ${completeList.length} cards from scryfall`);
     return completeList;
   }
 
