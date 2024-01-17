@@ -6,11 +6,14 @@ const logLevelModel = z
   .default("info");
 
 function makeLogger(): pino.Logger {
-  const logLevel = logLevelModel.parse(process.env.LOG_LEVEL);
+  const logLevel = process.env.LOG_LEVEL
+    ? logLevelModel.parse(process.env.LOG_LEVEL)
+    : logLevelModel.parse('info');
 
-  return pino({
+  const logger = pino({
     level: logLevel,
   });
+  return logger;
 }
 
 export const logger = makeLogger();
