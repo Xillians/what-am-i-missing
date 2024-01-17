@@ -15,7 +15,7 @@ export const ScryfallCard = ({ cards }: Props) => {
       id={cards.id}
       flexDir={"column"}
       alignItems={"left"}
-      margin={"0 0 0 10px"}
+      margin={"0.4em"}
       onClick={onOpen}
     >
       <CardDetails isOpen={isOpen} card={cards} onClose={onClose} />
