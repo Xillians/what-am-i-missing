@@ -16,12 +16,13 @@ import React, { useEffect } from "react";
 
 interface Props {
   card: CardData;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 // card details is a modal that will display the card details
 // when a card is clicked on
-export const CardDetails = ({ card }: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const CardDetails = ({ card, isOpen, onClose }: Props) => {
   const [cardDetails, setCardDetails] = React.useState<CardData[]>([]);
 
   useEffect(() => {
@@ -35,8 +36,6 @@ export const CardDetails = ({ card }: Props) => {
   }, [isOpen, card.id]);
 
   return (
-    <>
-      <Button onClick={onOpen}>Details</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay
           sx={{
@@ -91,6 +90,5 @@ export const CardDetails = ({ card }: Props) => {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </>
   );
 };
