@@ -28,7 +28,7 @@ export class CardInput {
    * @returns the quantity of the card
    */
   private set_quantity(input: string) {
-    const quantity = input.split(" ")[0];
+    const quantity = input.split(" ")[0].replace(',', '');
     return parseInt(quantity.replace(/[0-9]x /, ""));
   }
   /**
@@ -40,7 +40,7 @@ export class CardInput {
    * @returns the card name without the quantity
    */
   private set_card_name(input: string) {
-    const quantity = input.split(" ")[0];
+    const quantity = input.split(" ")[0].replace(/"/g, '');
     const card = input.replace(quantity, "");
     return this.trim_meta_data(card);
   }
