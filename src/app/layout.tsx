@@ -1,6 +1,7 @@
-import React from "react"
-import Header from "./_components/header/header"
-import { Providers } from "./providers"
+import React from "react";
+import Header from "./_components/header/header";
+import { Providers } from "./providers";
+import './theme.scss';
 
 export const metadata = {
   title: 'Magic gap analyzer',
