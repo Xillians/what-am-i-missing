@@ -22,15 +22,7 @@ function Output({ cards }: OutputProps) {
         <Button
           colorScheme="blue"
           size="lg"
-          style={{
-            margin: "1rem",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            border: "1px solid #ccc",
-            resize: "none",
-            backgroundColor: "#b3d4fc",
-            color: "#ffff",
-          }}
+          className="btn-primary"
           onClick={() => {
             navigator.clipboard.writeText(
               Array.from(cards)
@@ -44,15 +36,7 @@ function Output({ cards }: OutputProps) {
         <Button
           colorScheme="blue"
           size="lg"
-          style={{
-            margin: "1rem",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            border: "1px solid #ccc",
-            resize: "none",
-            backgroundColor: "#b3d4fc",
-            color: "#ffff",
-          }}
+          className="btn-primary"
           onClick={() => {
             navigator.clipboard.writeText(
               JSON.stringify(Object.fromEntries(cards), null, 2)

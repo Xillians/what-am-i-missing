@@ -82,16 +82,7 @@ function CardInputs(props: any) {
       <Button
         colorScheme="blue"
         size="lg"
-        style={{
-          margin: "1rem",
-          padding: "1rem",
-          borderRadius: "0.5rem",
-          border: "1px solid #ccc",
-          resize: "none",
-          backgroundColor: "#b3d4fc",
-          color: "#ffff",
-          maxWidth: "50%",
-        }}
+        className="btn-primary"
         onClick={analyze}
       >
         Submit
