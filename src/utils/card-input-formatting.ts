@@ -40,9 +40,9 @@ export class CardInput {
    * @returns the card name without the quantity
    */
   private set_card_name(input: string) {
-    const quantity = input.split(" ")[0].replace(/"/g, '');
+    const quantity = input.split(" ")[0];
     const card = input.replace(quantity, "");
-    return this.trim_meta_data(card);
+    return this.trim_meta_data(card).replace(/"/g, '');
   }
   /**
    * Removes meta data from card name. Meta data is anything in brackets or parenthesis
