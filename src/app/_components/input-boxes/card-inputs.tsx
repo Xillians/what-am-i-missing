@@ -36,23 +36,27 @@ function CardInputs(props: any) {
    */
   function analyze() {
     const missing_cards = new Map<string, number>();
+    const collectionCards = new Map<string, number>();
     const deckList = split_cards(decklist);
     const collectionList = split_cards(collection);
     deckList.forEach((quantity: number, name: string) => {
       if (collectionList.has(name)) {
-        const collection_quantity = collectionList.get(name);
-        if (collection_quantity && collection_quantity < quantity) {
+        const collection_quantity = collectionList.get(name) ?? 0;
+        if (collection_quantity < quantity) {
           const card: CardInputType = {
             name: name,
             quantity: quantity - collection_quantity,
           };
           missing_cards.set(card.name, card.quantity);
+        } else {
+          collectionCards.set(name, collection_quantity);
         }
       } else {
         missing_cards.set(name, quantity);
       }
     });
     props.setMissingCards(missing_cards);
+    props.setCollectionCards(collectionCards);
   }
   function split_cards(cardlist: string) {
     const cards = cardlist.split("\n");
@@ -76,8 +80,16 @@ function CardInputs(props: any) {
         justifyContent={"center"}
         width={"100%"}
       >
-        <InputBox placeholder="Decklist" onChange={onDecklistChange} />
-        <InputBox placeholder="Collection" onChange={onCollectionChange} />
+        <InputBox 
+          placeholder="Decklist" 
+          onChange={onDecklistChange} 
+          title="Decklist"
+        />
+        <InputBox 
+          placeholder="Collection" 
+          onChange={onCollectionChange} 
+          title="Collection"
+        />
       </Flex>
       <Button
         colorScheme="blue"

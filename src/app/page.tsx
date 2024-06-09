@@ -7,17 +7,26 @@ import { ScryfallOutput } from "./_components/scryfall/scryfall-output";
 
 function Page() {
   const [cards, setMissingCards] = React.useState<Map<string, number>>(new Map<string, number>());
+  const [collectionCards, setCollectionCards] = React.useState<Map<string, number>>(new Map<string, number>());
   return (
     <Flex 
       flexDir={"column"}
       width={{ base: "100%", md: "50%" }}
       >
-      <CardInputs setMissingCards={setMissingCards} />
+      <CardInputs 
+        setMissingCards={setMissingCards} 
+        setCollectionCards={setCollectionCards}
+      />
       {
         cards.size > 0 &&
-        <Output cards={cards} />
+        <Output 
+          cards={cards} 
+          collectionCards={collectionCards}
+        />
       }
-        <ScryfallOutput cards={cards} />
+        <ScryfallOutput 
+          cards={cards} 
+        />
     </Flex>
   );
 }

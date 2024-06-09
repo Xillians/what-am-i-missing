@@ -1,9 +1,17 @@
 :root {
     --header-color: #b3d4fc;
+    --primary-color: #265a9b;
     --sand: #ccc;
     --button-color: #3882dc;
     --button-text-color: #fff;
     --button-hover-color: #2e64e8;
+}
+
+h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 .header {

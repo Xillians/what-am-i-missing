@@ -4,9 +4,10 @@ import { Button, Flex } from "@chakra-ui/react";
 
 interface OutputProps {
   cards: Map<string, number>;
+  collectionCards: Map<string, number>;
 }
 
-function Output({ cards }: OutputProps) {
+function Output({ cards, collectionCards }: OutputProps) {
   return (
     <Flex
       style={{
@@ -17,7 +18,14 @@ function Output({ cards }: OutputProps) {
         margin: "1rem",
       }}
     >
-      <OutputBox cards={cards} />
+      <Flex
+        flexFlow={{ base: "column", md: "row" }}
+        justifyContent="center"
+        width={'100%'}
+      >
+        <OutputBox title='Missing cards' cards={cards} />
+        <OutputBox title='In collection' cards={collectionCards} />
+      </Flex>
       <Flex>
         <Button
           colorScheme="blue"
