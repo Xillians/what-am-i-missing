@@ -5,6 +5,7 @@ interface InputBoxProps {
     title?: string;
     placeholder: string;
     onChange: any;
+    value?: string;
 }
 
 export default function InputBox(props: InputBoxProps) {
